@@ -24,31 +24,4 @@ resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   tags: tags
 }
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2022-06-01' = {
-  name: 'st${environmentName}sa'
-  location: location
-  sku: {
-    name: 'Standard_LRS'
-  }
-  kind: 'StorageV2'
-  tags: tags
-}
 
-resource appServicePlan 'Microsoft.Web/serverfarms@2022-06-01' = {
-  name: 'asp-${environmentName}'
-  location: location
-  sku: {
-    name: 'F1'
-    tier: 'Free'
-  }
-  tags: tags
-}
-
-resource appService 'Microsoft.Web/sites@2022-06-01' = {
-  name: 'app-${environmentName}'
-  location: location
-  tags: tags
-  properties: {
-    serverFarmId: appServicePlan.id
-  }
-}
